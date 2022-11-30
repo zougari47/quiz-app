@@ -2,52 +2,35 @@ import { useRouter } from 'next/router'
 import { ChangeEvent, FC, MouseEvent, useState } from 'react'
 import {
   Button,
-  FormControl,
   Card,
+  css,
+  FormControl,
   InputLabel,
+  keyframes,
   MenuItem,
   Select,
   SelectChangeEvent,
   TextField,
-  Typography,
-  keyframes,
-  css,
+  Typography
 } from '@mui/material'
 import type { IHomePageProps, IFormOptions } from '../interface'
-import styled from '@emotion/styled'
 
 interface IFormComponentProps extends IHomePageProps {
   showLoader: () => void
 }
 
-const animate = keyframes`
-0%{
-  background-position: 0%;
-}
-100%{
-  background-position: 400%;
-}
-`
-const animation = css`
-  animation: ${animate} 3s linear infinite;
-`
-
-// const H1 = styled
-
-// const
-
 const Form: FC<IFormComponentProps> = ({
   categories,
   difficulties,
   types,
-  showLoader,
+  showLoader
 }) => {
   const router = useRouter()
   const [questionNumber, setQuestionNumber] = useState(5)
   const [options, setOptions] = useState({
     category: '0',
     type: 'any',
-    difficulty: 'any',
+    difficulty: 'any'
   })
 
   // function
@@ -79,29 +62,26 @@ const Form: FC<IFormComponentProps> = ({
     router.push(
       {
         pathname: '/quiz',
-        query: { questionNumber, ...options },
+        query: { questionNumber, ...options }
       },
       '/quiz'
     )
   }
   return (
     <form method="post">
-      <Card sx={{ p: 3 }}>
+      <Card sx={{ p: 3, width: '90%', mx: 'auto' }}>
         <Typography
-          variant="h1"
+          variant="h2"
           textTransform="capitalize"
           textAlign="center"
           fontStyle="italic"
           color="primary"
           gutterBottom
           sx={{
-            fontSize: 150,
-            background:
-              '-webkit-linear-gradient(45deg , #2196f3 , #4dabf5 , #1769aa)',
-            // backgroundClip: 'text',
-            // WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            animation: `${animate} 1s linear infinite`,
+            background: '-webkit-linear-gradient(45deg ,#1769aa , #4dabf5 )',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
           }}
         >
           quizzical
