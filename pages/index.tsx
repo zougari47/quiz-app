@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { GetStaticProps, NextPage } from 'next'
 import { useState } from 'react'
+import Answers from '../components/Answers'
 import Form from '../components/Form'
 import Loader from '../components/Loader'
 import { ICategory, IHomePageProps } from '../interface'
@@ -8,7 +9,7 @@ import { ICategory, IHomePageProps } from '../interface'
 const HomePage: NextPage<IHomePageProps> = ({
   categories,
   difficulties,
-  types
+  types,
 }) => {
   const [loading, setLoading] = useState(false)
   return (
@@ -31,47 +32,47 @@ export const getStaticProps: GetStaticProps = async () => {
   // data
   const categories: ICategory[] = [
     { id: 0, name: 'Any' },
-    ...res.trivia_categories
+    ...res.trivia_categories,
   ]
   const difficulties = [
     {
       id: 'any',
-      name: 'Any'
+      name: 'Any',
     },
     {
       id: 'easy',
-      name: 'Easy'
+      name: 'Easy',
     },
     {
       id: 'medium',
-      name: 'Medium'
+      name: 'Medium',
     },
     {
       id: 'hard',
-      name: 'Hard'
-    }
+      name: 'Hard',
+    },
   ]
   const types = [
     {
       id: 'any',
-      name: 'Any'
+      name: 'Any',
     },
     {
       id: 'boolean',
-      name: 'True / False'
+      name: 'True / False',
     },
     {
       id: 'multiple',
-      name: 'Multiple Choice'
-    }
+      name: 'Multiple Choice',
+    },
   ]
 
   return {
     props: {
       categories,
       difficulties,
-      types
-    }
+      types,
+    },
   }
 }
 
