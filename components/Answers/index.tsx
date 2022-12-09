@@ -1,12 +1,6 @@
 import { Button } from '@mui/material'
 import { FC, useState } from 'react'
-
-interface IAnswersComponentProps {
-  answers: string[]
-  correctAnswer: string
-  hasAnswered: boolean
-  updateScore: () => void
-}
+import { IAnswersComponentProps } from '../../interface'
 
 const Answers: FC<IAnswersComponentProps> = ({
   answers,
@@ -15,30 +9,15 @@ const Answers: FC<IAnswersComponentProps> = ({
   updateScore,
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState('')
-  // answers []
-  // hasAnswered
-  // correct answer
   const handleBtnClick = (answer: string) => {
     if (!hasAnswered) {
       setSelectedAnswer(answer)
     }
   }
 
-  return (
-    <>
-      <div style={{ display: 'flex', gap: '1rem', marginRight: '5rem' }}>
-        {answers.map(a => (
-          <Button
-            variant={selectedAnswer === a ? 'contained' : 'outlined'}
-            onClick={() => handleBtnClick(a)}
-          >
-            {a}
-          </Button>
-        ))}
-      </div>
-
-      {/* has answer */}
-      <div style={{ display: 'flex', gap: '1rem' }}>
+  if (hasAnswered) {
+    return (
+      <div>
         {answers.map(a => (
           <Button
             variant={
@@ -55,7 +34,23 @@ const Answers: FC<IAnswersComponentProps> = ({
           </Button>
         ))}
       </div>
-    </>
+    )
+  }
+
+  // if he has not answer
+  return (
+    <div>
+      {answers.map(a => (
+        <Button
+          variant={selectedAnswer === a ? 'contained' : 'outlined'}
+          onClick={() => handleBtnClick(a)}
+        >
+          {a}
+        </Button>
+      ))}
+      {/* has answer */}
+      <div style={{ display: 'flex', gap: '1rem' }}>{}</div>
+    </div>
   )
 }
 

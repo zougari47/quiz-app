@@ -1,5 +1,9 @@
 import type { IAnswerType, ICategory, IDifficulty } from './api'
-import type { IFormOptions, IQuestionComponentProps } from './components'
+import type {
+  IFormOptions,
+  IQuestionComponentProps,
+  IAnswersComponentProps,
+} from './components'
 import type { IHomePageProps, IResultPageProps } from './page'
 
 export type {
@@ -9,5 +13,6 @@ export type {
   IHomePageProps,
   IFormOptions,
   IQuestionComponentProps,
+  IAnswersComponentProps,
   IResultPageProps,
 }

@@ -16,3 +16,10 @@ export interface IFormOptions {
   type: string
   difficulty: string
 }
+
+export interface IAnswersComponentProps {
+  answers: string[]
+  correctAnswer: string
+  hasAnswered: boolean
+  updateScore: () => void
+}
