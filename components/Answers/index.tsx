@@ -2,24 +2,32 @@ import { Button } from '@mui/material'
 import { FC, useState } from 'react'
 import { IAnswersComponentProps } from '../../interface'
 
+const containerStyle = {
+  display: 'flex',
+  justifyContent: 'space-around',
+  flexWrap: 'wrap'
+}
+
 const Answers: FC<IAnswersComponentProps> = ({
   answers,
   correctAnswer,
   hasAnswered,
-  updateScore,
+  updateScore
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState('')
   const handleBtnClick = (answer: string) => {
     if (!hasAnswered) {
       setSelectedAnswer(answer)
+      updateScore(answer)
     }
   }
 
   if (hasAnswered) {
     return (
-      <div>
+      <>
         {answers.map(a => (
           <Button
+            sx={{ display: 'block', mb: 3 }}
             variant={
               selectedAnswer === a
                 ? 'contained'
@@ -29,28 +37,29 @@ const Answers: FC<IAnswersComponentProps> = ({
             }
             color={a === correctAnswer ? 'success' : 'error'}
             disabled={a !== correctAnswer && a !== selectedAnswer}
+            key={a}
           >
             {a}
           </Button>
         ))}
-      </div>
+      </>
     )
   }
 
   // if he has not answer
   return (
-    <div>
+    <>
       {answers.map(a => (
         <Button
+          sx={{ display: 'block', mb: 3 }}
           variant={selectedAnswer === a ? 'contained' : 'outlined'}
           onClick={() => handleBtnClick(a)}
+          key={a}
         >
           {a}
         </Button>
       ))}
-      {/* has answer */}
-      <div style={{ display: 'flex', gap: '1rem' }}>{}</div>
-    </div>
+    </>
   )
 }
 

@@ -69,7 +69,7 @@ const Form: FC<IFormComponentProps> = ({
   }
   return (
     <form method="post">
-      <Card sx={{ p: 3, width: '90%', mx: 'auto' }}>
+      <Card sx={{ p: 3, width: 'min(90%,500px)', mx: 'auto' }}>
         <Typography
           variant="h2"
           textTransform="capitalize"

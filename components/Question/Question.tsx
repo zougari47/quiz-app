@@ -1,14 +1,11 @@
 import { useRouter } from 'next/router'
-import { ChangeEvent, FC, useCallback, useMemo, useRef, useState } from 'react'
+import { FC, useRef, useState } from 'react'
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import { Box, Button, Card, Fade, Typography } from '@mui/material'
-import FormControl from '@mui/material/FormControl'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Radio from '@mui/material/Radio'
-import RadioGroup from '@mui/material/RadioGroup'
 import { Container } from '@mui/system'
 import type { IQuestionComponentProps } from '../../interface/'
+import Answers from '../Answers'
 
 const Question: FC<IQuestionComponentProps> = ({
   question,
@@ -19,27 +16,28 @@ const Question: FC<IQuestionComponentProps> = ({
   questionsCount,
   nextQuestion,
   updateScore,
-  showLoader,
+  showLoader
 }) => {
   const [questionProps, setQuestionProps] = useState({
     selectedAnswer: '',
-    hasAnswered: false,
+    hasAnswered: false
   })
-  const randomNumber = useRef(Math.random())
   const router = useRouter()
+  const ALL_ANSWERS_SHUFFLED = useRef(
+    [correctAnswer, ...falseAnswers].sort(() => Math.random() - 0.5)
+  )
+  const originArr = [correctAnswer, ...falseAnswers]
 
   // **** functions ****
-  const handleChangeRadioBtn = (e: ChangeEvent<HTMLInputElement>) =>
-    setQuestionProps(prevProps => ({
-      ...prevProps,
-      selectedAnswer: e.target.value,
-    }))
+  const handleSelectAnswer = (answer: string) => {
+    setQuestionProps(prevProps => ({ ...prevProps, selectedAnswer: answer }))
+  }
 
   const handleSubmitClick = () => {
     // check if has answered
-    if (!questionProps.hasAnswered) {
-      // show alert
-    }
+    // if (!questionProps.hasAnswered) {
+    //   show alert
+    // }
 
     if (questionProps.selectedAnswer === correctAnswer) {
       updateScore() // + 1
@@ -54,7 +52,7 @@ const Question: FC<IQuestionComponentProps> = ({
       router.push(
         {
           pathname: '/result',
-          query: { result: `${score}/${questionsCount}` },
+          query: { result: `${score}/${questionsCount}` }
         },
         '/result'
       )
@@ -66,7 +64,7 @@ const Question: FC<IQuestionComponentProps> = ({
   return (
     <Fade timeout={1500} in={true}>
       <Container>
-        <Card sx={{ paddingBlock: 3 }}>
+        <Card sx={{ p: 3 }}>
           <Typography
             variant="subtitle2"
             display="block"
@@ -86,29 +84,20 @@ const Question: FC<IQuestionComponentProps> = ({
             {question}
           </Typography>
 
-          <FormControl margin="dense" fullWidth>
-            <RadioGroup
-              row
-              aria-labelledby="answers"
-              name="answers"
-              sx={{
-                justifyContent: 'space-around',
-              }}
-              value={questionProps.selectedAnswer}
-              onChange={handleChangeRadioBtn}
-            >
-              {[correctAnswer, ...falseAnswers]
-                .sort(() => 0.5 - randomNumber.current)
-                .map(a => (
-                  <FormControlLabel
-                    key={a}
-                    value={a}
-                    control={<Radio />}
-                    label={a}
-                  />
-                ))}
-            </RadioGroup>
-          </FormControl>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-evenly',
+              flexWrap: 'wrap'
+            }}
+          >
+            <Answers
+              correctAnswer={correctAnswer}
+              answers={ALL_ANSWERS_SHUFFLED.current}
+              hasAnswered={questionProps.hasAnswered}
+              updateScore={handleSelectAnswer}
+            />
+          </Box>
 
           <Box
             component="div"

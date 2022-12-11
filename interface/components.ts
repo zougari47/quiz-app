@@ -21,5 +21,5 @@ export interface IAnswersComponentProps {
   answers: string[]
   correctAnswer: string
   hasAnswered: boolean
-  updateScore: () => void
+  updateScore: (x: string) => void
 }
