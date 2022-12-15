@@ -13,11 +13,9 @@ Quiz App built with
 - [Material UI](https://mui.com/)
 - [Open Trivia DB API](https://opentdb.com/)
 
-🔴 Check this [version](https://github.com/zougari47/quiz-app/tree/CRA) with [TailwindCSS](https://tailwindcss.com/) and [create-react-app](https://create-react-app.dev/) only.
+🔴 Check this [version](https://github.com/zougari47/quiz-app/tree/CRA) with [TailwindCSS](https://tailwindcss.com/) and [create-react-app](https://create-react-app.dev/).
 
--
-
-![preview](./src/screenshot.png)
+![preview](https://user-images.githubusercontent.com/24995094/207837594-2cc664e0-7db4-44c2-bb97-d9f65099a068.jpg)
 
 ## Live Demo
 
