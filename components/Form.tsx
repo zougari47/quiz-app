@@ -11,9 +11,9 @@ import {
   Select,
   SelectChangeEvent,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material'
-import type { IHomePageProps, IFormOptions } from '../interface'
+import type { IHomePageProps, IFormOptions } from '../types'
 
 interface IFormComponentProps extends IHomePageProps {
   showLoader: () => void
@@ -23,14 +23,14 @@ const Form: FC<IFormComponentProps> = ({
   categories,
   difficulties,
   types,
-  showLoader
+  showLoader,
 }) => {
   const router = useRouter()
   const [questionNumber, setQuestionNumber] = useState(5)
   const [options, setOptions] = useState({
     category: '0',
     type: 'any',
-    difficulty: 'any'
+    difficulty: 'any',
   })
 
   // function
@@ -62,7 +62,7 @@ const Form: FC<IFormComponentProps> = ({
     router.push(
       {
         pathname: '/quiz',
-        query: { questionNumber, ...options }
+        query: { questionNumber, ...options },
       },
       '/quiz'
     )
@@ -81,7 +81,7 @@ const Form: FC<IFormComponentProps> = ({
             background: '-webkit-linear-gradient(45deg ,#1769aa , #4dabf5 )',
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
+            WebkitTextFillColor: 'transparent',
           }}
         >
           quizzical

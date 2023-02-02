@@ -43,33 +43,31 @@ const QuizPage: NextPage<IQuizPageProps> = ({ questionsList }) => {
   )
 }
 
-export default QuizPage
-
 export const getServerSideProps: GetServerSideProps = async context => {
   // if query.category === undefined (we don't get the query params) => redirect to home page
   if (!Boolean(context.query.category)) {
     return {
       redirect: {
         destination: '/',
-        permanent: false
-      }
+        permanent: false,
+      },
     }
   }
 
+  const API = 'https://opentdb.com/api.php'
   const { questionNumber, category, type, difficulty } = context.query
-
-  // make queries here !!
-  const N = questionNumber
-  const CAT = category !== '0' ? `&category=${category}` : ''
-  const TYPE = type !== 'any' ? `&type=${type}` : ''
-  const DIF = difficulty !== 'any' ? `&difficulty=${difficulty}` : ''
-
-  const API = `https://opentdb.com/api.php?amount=${N + CAT + TYPE + DIF}`
-  const questionsList = (await axios.get(API)).data.results
-
-  console.log({ API, questionsList, questionNumber })
+  const requestParams = {
+    amount: questionNumber,
+    category: category !== '0' ? category : null,
+    type: type !== 'any' ? type : null,
+    difficulty: difficulty !== 'any' ? difficulty : null,
+  }
+  const questionsList = (await axios.get(API, { params: requestParams })).data
+    .results
 
   return {
-    props: { questionsList }
+    props: { questionsList },
   }
 }
+
+export default QuizPage

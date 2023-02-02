@@ -1,18 +1,18 @@
 import { Button } from '@mui/material'
 import { FC, useState } from 'react'
-import { IAnswersComponentProps } from '../../interface'
+import { IAnswersComponentProps } from '../../types'
 
 const containerStyle = {
   display: 'flex',
   justifyContent: 'space-around',
-  flexWrap: 'wrap'
+  flexWrap: 'wrap',
 }
 
 const Answers: FC<IAnswersComponentProps> = ({
   answers,
   correctAnswer,
   hasAnswered,
-  updateScore
+  updateScore,
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState('')
   const handleBtnClick = (answer: string) => {

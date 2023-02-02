@@ -1,10 +1,9 @@
 import axios from 'axios'
 import { GetStaticProps, NextPage } from 'next'
 import { useState } from 'react'
-import Answers from '../components/Answers'
 import Form from '../components/Form'
 import Loader from '../components/Loader'
-import { ICategory, IHomePageProps } from '../interface'
+import { ICategory, IHomePageProps } from '../types'
 
 const HomePage: NextPage<IHomePageProps> = ({
   categories,

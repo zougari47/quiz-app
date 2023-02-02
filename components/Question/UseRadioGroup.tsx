@@ -47,7 +47,6 @@ const UseRadioGroup: FC<UseRadioGroupComponentProps> = ({
     updateState(value)
   }
 
-  console.log('useRadioGroup item has rerender')
   return (
     <RadioGroup
       name="use-radio-group"

@@ -6,10 +6,10 @@ import {
   Card,
   CardActions,
   CardContent,
-  Typography
+  Typography,
 } from '@mui/material'
 import Loader from '../../components/Loader'
-import type { IResultPageProps } from '../../interface'
+import type { IResultPageProps } from '../../types'
 
 const ResultPage: NextPage<IResultPageProps> = ({ result }) => {
   const router = useRouter()
@@ -55,13 +55,13 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     return {
       redirect: {
         destination: '/',
-        permanent: false
-      }
+        permanent: false,
+      },
     }
   }
 
   return {
-    props: { result }
+    props: { result },
   }
 }
 
