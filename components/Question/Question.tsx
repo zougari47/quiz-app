@@ -4,7 +4,7 @@ import CheckRoundedIcon from '@mui/icons-material/CheckRounded'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import { Box, Button, Card, Fade, Typography } from '@mui/material'
 import { Container } from '@mui/system'
-import type { IQuestionComponentProps } from '../../interface/'
+import type { IQuestionComponentProps } from '../../types'
 import Answers from '../Answers'
 
 const Question: FC<IQuestionComponentProps> = ({
@@ -16,11 +16,11 @@ const Question: FC<IQuestionComponentProps> = ({
   questionsCount,
   nextQuestion,
   updateScore,
-  showLoader
+  showLoader,
 }) => {
   const [questionProps, setQuestionProps] = useState({
     selectedAnswer: '',
-    hasAnswered: false
+    hasAnswered: false,
   })
   const router = useRouter()
   const ALL_ANSWERS_SHUFFLED = useRef(
@@ -52,7 +52,7 @@ const Question: FC<IQuestionComponentProps> = ({
       router.push(
         {
           pathname: '/result',
-          query: { result: `${score}/${questionsCount}` }
+          query: { result: `${score}/${questionsCount}` },
         },
         '/result'
       )
@@ -88,7 +88,7 @@ const Question: FC<IQuestionComponentProps> = ({
             sx={{
               display: 'flex',
               justifyContent: 'space-evenly',
-              flexWrap: 'wrap'
+              flexWrap: 'wrap',
             }}
           >
             <Answers
